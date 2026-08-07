@@ -240,6 +240,8 @@
   .gallery figcaption { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
   @media (max-width: 520px) { .gallery { grid-template-columns: 1fr; } }
 
+  .plan .check { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--hairline); font-size: 12.5px; color: var(--ink-2); }
+  .plan .check b { color: var(--accent); font-weight: 700; margin-right: 6px; }
   /* closing + footer */
   .closing { background: var(--surface); border: 1px solid var(--hairline); border-top: 3px solid var(--brand); border-radius: 6px; padding: 30px 32px 22px; margin-top: 28px; }
   .closing p { max-width: none; }
@@ -376,6 +378,13 @@
       </table>
     </div>
     <p class="gradekey">注：绿色行为本学年出现升档的科目（Attainment 或 Effort / Conduct）。班主任 Conduct 总评：Term 1 为 <b>C</b>，Term 2 升到 <b>B</b>，Term 3 全科报告未单列班主任 Conduct 等级。EAL 英语支持课三学期均为纯文字评语，不评等级。</p>
+    <div class="chart-card">
+      <h4>三学期走势</h4>
+      <p class="sub">Attainment 学业达成 · C 需关注 → B 低于预期 → M 达标 → E 典范</p>
+      <div class="chart-scroll"><svg id="chart-grades" viewBox="0 0 720 250" role="img" aria-label="各科三学期成绩走势图"></svg></div>
+      <p class="sub" style="margin-top:10px">灰线为三学期持平的科目；绿线上行、琥珀线下行，并在右侧标注科目名。</p>
+    </div>
+
 
     <div class="callouts">
       <div class="callout"><b>两科三项全升</b>科学与中文的 Effort、Conduct、Attainment 三项都从 B 升到 M。科学老师在年度评语里写：年初的行为挑战，如今看到的是明显更强的成熟度与专注力。</div>
@@ -441,7 +450,7 @@
     <p>老师那句「说明课后有认真复习」，说的其实不是作业本身，而是没有人盯着的那段时间里他做了什么。对一个二年级孩子来说，这是独立性最实在的证据。</p>
 
     <h3>需要如实说的部分</h3>
-    <p>英语 Attainment 在 Term 3 从 M 降到了 <b>B</b>，是全年唯一下降的一项。6 月 15 日学校给出的两段话应该并排读：班主任写他「本学期有令人鼓励的进步，尤其在写作方面——更自信地用文字表达想法、稳步改善；口语表达自信、乐于参与课堂讨论」；同一天，Junior School EAL 主管 Hannah Swinbourne 的答复则很直接——阅读、英文与语言测评显示进步速度未达标，与年级期望的差距在扩大，重点方向是阅读理解、写作准确性与学术词汇和语法。</p>
+    <p>英语 Attainment 在 Term 3 从 M 降到了 <b>B</b>，是全年唯一下降的一项。同一天，班主任在期末英文报告里写的是：「虽然 Alden 尚未稳定达到年级期望，但他这一学期展现出令人鼓励的进步，尤其在写作方面——他在用书面形式表达想法时越来越有信心，并持续稳步改善。」降档和进步是同时发生的，这两句话要放在一起读。6 月 15 日学校给出的两段话应该并排读：班主任写他「本学期有令人鼓励的进步，尤其在写作方面——更自信地用文字表达想法、稳步改善；口语表达自信、乐于参与课堂讨论」；同一天，Junior School EAL 主管 Hannah Swinbourne 的答复则很直接——阅读、英文与语言测评显示进步速度未达标，与年级期望的差距在扩大，重点方向是阅读理解、写作准确性与学术词汇和语法。</p>
     <p>YE 课堂上的诊断和学校对得上。5 月 22 日的反馈把问题说得很准：</p>
     <blockquote>「目前的问题不是『不会』，而是：写的时候没有主动提醒自己使用正确语法；更容易按照口语感觉直接写。」<footer>YE 作业辅导反馈 · 2026.5.22</footer></blockquote>
     <p>换句话说，语法已经学过了，还没有变成落笔时的条件反射。这正是三年级要接着做的事。</p>
@@ -552,6 +561,10 @@
       <div class="q-card"><span class="mark">“</span><span class="en-q">"He is now showing much greater maturity and focus during lessons, which has had a very positive impact on both his learning and engagement in science."</span><br>「他现在课上展现出更强的成熟度与专注力，这对他的学习和科学参与都产生了非常积极的影响。」<footer>Term 3 Full Report · 科学 · Ms Nickalls</footer></div>
       <div class="q-card"><span class="mark">“</span>「他本学期有令人鼓励的进步，尤其在写作方面——更自信地用文字表达想法、稳步改善；口语表达自信、乐于参与课堂讨论。」<footer>班主任 Mrs Vanessa Adamberry · 期末英文报告 · 2026.6.15</footer></div>
       <div class="q-card"><span class="mark">“</span>「今天先检查了上次的作业，Alden 完成得很好，说明课后有认真复习……练习正确率很高，大部分都能做到 9/10 或 10/10。」<footer>YE 英文课反馈 · 张奕为老师 · 2026.6.1</footer></div>
+    
+      <div class="q-card"><span class="mark">“</span><span class="en-q">Oral language is his current strength.</span><br>「口语表达是他目前的强项。」<footer>EAL 主管 Hannah Swinbourne · 教师来信 · 2026.6.15</footer></div>
+      <div class="q-card"><span class="mark">“</span><span class="en-q">Alden presents as verbally confident when speaking and willingly contributes to class discussions.</span><br>「Alden 在口头表达时展现出自信，乐于参与课堂讨论。」<footer>班主任 Mrs Vanessa Adamberry · 教师来信 · 2026.6.16</footer></div>
+      <div class="q-card"><span class="mark">“</span><span class="en-q">Yiyang has shown progress in various areas recently, especially in his homework. I have acknowledged his improvement in class and would like to share this with you.</span><br>「亦阳最近在多个方面都有进步，尤其是作业方面。我已经在课堂上肯定了他的进步，也想把这件事分享给您。」<footer>中文教师 张丽华 · 主动来信 · 2026.5.4</footer></div>
     </div>
   </section>
 
@@ -608,19 +621,19 @@
     <div class="plan">
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">书面英语与年级达标线</b>英语 Attainment 在 Term 3 降为 <b>B</b>；6 月 15 日 EAL 主管指出进步速度未达标、与年级期望的差距在扩大，重点是阅读理解、写作准确性与学术词汇和语法。YE 端的诊断一致：语法学过了，落笔时还没有主动用起来。</div>
-        <div class="next"><span class="tag">G3 计划</span>学校的 Intensive English Language Acquisition 在原中文课时延续，每半学期复评一次，我们会跟进每一次复评结果。YE 侧把语法从「学过」推到「写得出来」：每个单元完成一篇成文并自改一轮，配一份固定自查清单（时态、大小写、标点、第三人称单数）；分级读物保持每周共读三次并回签阅读记录单。</div>
+        <div class="next"><span class="tag">G3 计划</span>学校的 Intensive English Language Acquisition 在原中文课时延续，每半学期复评一次，我们会跟进每一次复评结果。YE 侧把语法从「学过」推到「写得出来」：每个单元完成一篇成文并自改一轮，配一份固定自查清单（时态、大小写、标点、第三人称单数）；分级读物保持每周共读三次并回签阅读记录单。<div class="check"><b>验收</b>Term 1 英文报告：写作准确性与学术词汇有没有被点名进步</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">专注度的稳定性</b>十一份学科评语里，数学、科学、中文、音乐、计算机、体育与 EAL 都提到注意力飘移或需要提醒。整体已经从「需要频繁提醒」走到「提醒一次能迅速回来」，但后半节课仍会波动，且分科目差异明显。</div>
-        <div class="next"><span class="tag">G3 计划</span>把一节课拆成两个带间歇的专注块，把「提醒—回位」当场记录下来，让他自己看见次数在减少。三年级新增的 Positive Education 课程与每两周一次的 Dance and Drama，是现成的自我调节与表达场景，我们会跟着学校的课堂反馈在课后接住。</div>
+        <div class="next"><span class="tag">G3 计划</span>把一节课拆成两个带间歇的专注块，把「提醒—回位」当场记录下来，让他自己看见次数在减少。三年级新增的 Positive Education 课程与每两周一次的 Dance and Drama，是现成的自我调节与表达场景，我们会跟着学校的课堂反馈在课后接住。<div class="check"><b>验收</b>整节课保持专注成为常态，老师记录里「需要提醒」的次数逐月减少</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">急于求成，不检查</b>数学年度评语写他「有时对自己的答案过于确信，应更仔细地听指令、更开放地接受反馈」；英语评语写「作业有时显得仓促潦草，影响整体卷面和表达清晰度」。4 月 19 日与 26 日连续两周做「放慢节奏、先看清题目再作答」的干预，记录到正确率有所提升。</div>
-        <div class="next"><span class="tag">G3 计划</span>把「放慢—检查—修改」做成动笔前后的固定动作：数学每次作业留两分钟验算并写出验算过程，英文交卷前走一遍自查清单。这一项不追求速成，按月看错误类型的变化。</div>
+        <div class="next"><span class="tag">G3 计划</span>把「放慢—检查—修改」做成动笔前后的固定动作：数学每次作业留两分钟验算并写出验算过程，英文交卷前走一遍自查清单。这一项不追求速成，按月看错误类型的变化。<div class="check"><b>验收</b>做完必查，先由老师带查一个月，之后交给他自己；错因中「粗心」占比下降</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">中文基础与作业提交</b>中文虽已升到 <b>M</b>，但 Term 3 评语明言仍处于中文学习的基础阶段；识字与书写、按时交作业、课堂笔记三项被反复点名。6 月起中文课时暂时让位于英语强化。</div>
-        <div class="next"><span class="tag">G3 计划</span>学校继续下发中文单元材料，我们在课后固定安排识字、朗读与声调保温，把二声四声与生字默写维持住。目标很具体：等英文达标、回到中文课的时候，进度不掉队。</div>
+        <div class="next"><span class="tag">G3 计划</span>学校继续下发中文单元材料，我们在课后固定安排识字、朗读与声调保温，把二声四声与生字默写维持住。目标很具体：等英文达标、回到中文课的时候，进度不掉队。<div class="check"><b>验收</b>中文作业按时提交率稳定，课堂笔记完整；张老师的课上表扬能再出现</div></div>
       </div>
     </div>
 
@@ -782,6 +795,51 @@
       hit.addEventListener("mouseleave", hideTip);
     });
     el("text", { x: m.l, y: 11, "font-size": 11, fill: css("--muted") }, svg).textContent = "封";
+  })();
+
+  /* ---------- Chart: grade slope ---------- */
+  (function () {
+    var svg = document.getElementById("chart-grades"); if (!svg) return;
+    var SUBJ = [["Science 科学", "B,B,M"], ["Mandarin 中文", "B,B,M"], ["Mathematics 数学", "M,M,M"], ["Topic 主题课", "M,M,M"], ["Art & Design 美术", "M,M,M"], ["Computer Science 计算机", "M,M,M"], ["Drama 戏剧", "M,M,M"], ["Music 音乐", "M,M,M"], ["PE & Health 体育", "M,M,M"], ["English 英语", "M,M,B"]];
+    var LV = { "C": 1, "B": 2, "M": 3, "E": 4 };
+    var W = 720, H = 250, m = { t: 22, r: 168, b: 34, l: 42 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    function X(i) { return m.l + i * (iw / 2); }
+    function Y(v) { return m.t + ih - ((v - 1) / 3) * ih; }
+    ["C","B","M","E"].forEach(function (k) {
+      var y = Y(LV[k]);
+      el("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", "font-size": 12, "font-weight": 600, fill: css("--muted") }, svg).textContent = k;
+    });
+    ["Term 1","Term 2","Term 3"].forEach(function (t, i) {
+      el("text", { x: X(i), y: H - 12, "text-anchor": "middle", "font-size": 11.5, fill: css("--muted") }, svg).textContent = t;
+    });
+    var up = css("--up"), down = css("--gold"), flat = css("--grid");
+    var lanes = [];
+    SUBJ.forEach(function (s) {
+      var v = s[1].split(",").map(function (k) { return LV[k.trim()]; });
+      var changed = v[0] !== v[2] || v[0] !== v[1];
+      var dir = v[2] - v[0];
+      var col = !changed ? flat : (dir > 0 ? up : (dir < 0 ? down : up));
+      var d = v.map(function (y, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(y).toFixed(1); }).join(" ");
+      var g = el("g", {}, svg);
+      el("path", { d: d, fill: "none", stroke: col, "stroke-width": changed ? 2.6 : 1.4,
+                   opacity: changed ? 1 : 0.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, g);
+      v.forEach(function (y, i) {
+        el("circle", { cx: X(i), cy: Y(y), r: changed ? 4.5 : 3, fill: col,
+                       stroke: css("--surface"), "stroke-width": 1.5, opacity: changed ? 1 : 0.5 }, g);
+      });
+      if (changed) {
+        var ly = Y(v[2]);
+        while (lanes.some(function (p) { return Math.abs(p - ly) < 13; })) ly += 13;
+        lanes.push(ly);
+        el("line", { x1: X(2) + 6, x2: m.l + iw + 12, y1: Y(v[2]), y2: ly, stroke: col, "stroke-width": 1, opacity: .5 }, g);
+        el("text", { x: m.l + iw + 16, y: ly + 4, "font-size": 12, "font-weight": 600, fill: col }, g).textContent =
+          s[0] + "  " + s[1].split(",")[0] + "→" + s[1].split(",")[2];
+      }
+      g.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + s[1].replace(/,/g, " → "), ev.clientX, ev.clientY); });
+      g.addEventListener("mouseleave", hideTip);
+    });
   })();
 })();
 </script>
