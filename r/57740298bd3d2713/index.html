@@ -220,6 +220,8 @@
   .plan b.topic { display: block; margin-bottom: 4px; font-size: 14.5px; }
   @media (max-width: 640px) { .plan .row { grid-template-columns: 1fr; } .plan .now { border-right: 0; border-bottom: 1px solid var(--grid); } }
 
+  .plan .check { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--hairline); font-size: 12.5px; color: var(--ink-2); }
+  .plan .check b { color: var(--accent); font-weight: 700; margin-right: 6px; }
   /* closing + footer */
   .closing { background: var(--surface); border: 1px solid var(--hairline); border-top: 3px solid var(--brand); border-radius: 6px; padding: 30px 32px 22px; margin-top: 28px; }
   .closing p { max-width: none; }
@@ -353,6 +355,13 @@
       </table>
     </div>
     <p class="gradekey">注：绿色行为本学年成绩上升科目。Term 3 报告的班主任评语中将 Biology 写作 Final Grade 3，与成绩表的 4 不符，本表以成绩表为准。全年无 C（Cause for concern）等第。</p>
+    <div class="chart-card">
+      <h4>三学期走势</h4>
+      <p class="sub">MYP 七分制 · 7 最高 · 未出分的计算机与 EAL 未纳入本图</p>
+      <div class="chart-scroll"><svg id="chart-grades" viewBox="0 0 720 260" role="img" aria-label="各科三学期成绩走势图"></svg></div>
+      <p class="sub" style="margin-top:10px">灰线为三学期持平的科目；绿线上行、琥珀线下行，并在右侧标注科目名。</p>
+    </div>
+
 
     <div class="callouts">
       <div class="callout"><b>4 个科目升档并守住</b>数学、地理、设计工程、EAL。数学从 3 到 5，是全年最大的一次升幅；物理也从 3 升到 4，只是没能守住 Term 2 的 5 分。</div>
@@ -512,19 +521,19 @@
     <div class="plan">
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">学术英语的书面准确性</b>EAL 学年末目标里有两条是语法：继续攻克主谓一致，练习被动语态的时态、结构与用法。英文老师三个学期都在说同一件事；计算机老师则指出博客文章的技术准确性、学术语气与标点最需要发展。</div>
-        <div class="next"><span class="tag">G9 计划</span>与学校的 ELA 轨道并行：主谓一致、第三人称单数与过去式的一致性、被动语态各做专项，再把语法点落进学科写作——科学实验报告、地理长文、计算机博客都是现成的练兵场，改完对照学校的 rubric 复核。</div>
+        <div class="next"><span class="tag">G9 计划</span>与学校的 ELA 轨道并行：主谓一致、第三人称单数与过去式的一致性、被动语态各做专项，再把语法点落进学科写作——科学实验报告、地理长文、计算机博客都是现成的练兵场，改完对照学校的 rubric 复核。<div class="check"><b>验收</b>每篇实验报告与地理长文按学校 rubric 自评一次，主谓一致与被动语态错误逐月递减</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">复查答案的习惯</b>EAL 的第一条目标就是「仔细复查每个答案，避免漏题」。YE 课堂记录到的是同一个毛病：计算「经常在最后一步犯错」，括号展开时的符号变化容易出错，化学年考答案「偶尔缺少细节」。</div>
-        <div class="next"><span class="tag">G9 计划</span>把作答拆成两段：限时做完，再留固定时间只做复查，用一份三五条的自查清单（是否漏题、单位与符号、括号展开、答案是否回应了题目问的东西）。前几个月由老师带着走完流程，之后交给她自己执行。</div>
+        <div class="next"><span class="tag">G9 计划</span>把作答拆成两段：限时做完，再留固定时间只做复查，用一份三五条的自查清单（是否漏题、单位与符号、括号展开、答案是否回应了题目问的东西）。前几个月由老师带着走完流程，之后交给她自己执行。<div class="check"><b>验收</b>作答固定留出复查时间，用五条自查清单；前几个月老师带做，之后交给她自己</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">几何公式与知识保持</b>斜率公式、三角函数、Frequency Density 的公式与使用场景，反馈里都出现过「记不牢」。2025 年 11 月 30 日的原话是「理解很快，忘得也非常快」。数学老师建议暑期用课本与笔记巩固代数和三角。</div>
-        <div class="next"><span class="tag">G9 计划</span>建立公式卡，每 3–4 周回访一次旧知识点，不等到考前才复习；G9 的代数与三角衔接 IGCSE，正好把这些公式放回新语境里再用一遍。做题犹豫的问题一并处理——每周挑一道题让她讲给老师听。</div>
+        <div class="next"><span class="tag">G9 计划</span>建立公式卡，每 3–4 周回访一次旧知识点，不等到考前才复习；G9 的代数与三角衔接 IGCSE，正好把这些公式放回新语境里再用一遍。做题犹豫的问题一并处理——每周挑一道题让她讲给老师听。<div class="check"><b>验收</b>每 3–4 周回访一次旧公式，做题犹豫的题目每周挑一道讲给老师听</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">三门科学的术语与书面输出</b>Term 3 生物、化学、物理一起回落到 4 分。评语指向实验报告写得不充分、没有对照评分标准、受力图与方程变形较难、评价环节说不清该控制哪些变量；生物的专业词汇量大，需要课后重点强化。</div>
-        <div class="next"><span class="tag">G9 计划</span>学科词汇随学随记（英文释义 + 中文对照 + 例句），配合老师推荐的检索式复习；实验报告按 rubric 逐项拆解练写。YE 已在 5–6 月开了生物 Cell 与物理 Dynamics、Vector 的头，九月接着往下走。</div>
+        <div class="next"><span class="tag">G9 计划</span>学科词汇随学随记（英文释义 + 中文对照 + 例句），配合老师推荐的检索式复习；实验报告按 rubric 逐项拆解练写。YE 已在 5–6 月开了生物 Cell 与物理 Dynamics、Vector 的头，九月接着往下走。<div class="check"><b>验收</b>G9 第一次科学测验，实验报告能对照评分标准逐项写全</div></div>
       </div>
     </div>
 
@@ -644,6 +653,47 @@
       hit.addEventListener("mouseleave", hideTip);
     });
     el("text", { x: m.l, y: 172, "font-size": 11, fill: css("--muted") }, svg).textContent = "单科专项 = 物理 / 化学 / 生物 / 历史 / 英文各 1 节，均为 4 月年考前的专项复习";
+  })();
+
+  /* ---------- Chart: MYP grade slope ---------- */
+  (function () {
+    var svg = document.getElementById("chart-grades"); if (!svg) return;
+    var SUBJ = [["Mathematics 数学", [3, 5, 5]], ["Geography 地理", [4, 5, 5]], ["Design & Engineering 设计工程", [4, 5, 5]], ["Physics 物理", [3, 5, 4]], ["Chemistry 化学", [4, 5, 4]], ["Biology 生物", [5, 5, 4]], ["Mandarin 中文", [5, 5, 5]], ["History 历史", [5, 5, 5]], ["Music 音乐", [5, 5, 5]], ["Drama 戏剧", [5, 5, 5]], ["Art 艺术", [5, 5, 5]], ["PE & Health 体育", [5, 5, 5]], ["English 英文", [3, 3, 3]]];
+    var W = 720, H = 260, m = { t: 22, r: 176, b: 34, l: 42 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b, lo = 2, hi = 7;
+    function X(i) { return m.l + i * (iw / 2); }
+    function Y(v) { return m.t + ih - ((v - lo) / (hi - lo)) * ih; }
+    [2,3,4,5,6,7].forEach(function (v) {
+      var y = Y(v);
+      el("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", "font-size": 11.5, "font-weight": 600, fill: css("--muted"), "class": "num" }, svg).textContent = v;
+    });
+    ["Term 1","Term 2","Term 3"].forEach(function (t, i) {
+      el("text", { x: X(i), y: H - 12, "text-anchor": "middle", "font-size": 11.5, fill: css("--muted") }, svg).textContent = t;
+    });
+    var up = css("--up"), down = css("--gold"), flat = css("--grid");
+    var lanes = [];
+    SUBJ.forEach(function (s) {
+      var v = s[1], changed = !(v[0] === v[1] && v[1] === v[2]);
+      var dir = v[2] - v[0];
+      var col = !changed ? flat : (dir > 0 ? up : (dir < 0 ? down : down));
+      var d = v.map(function (y, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(y).toFixed(1); }).join(" ");
+      var g = el("g", {}, svg);
+      el("path", { d: d, fill: "none", stroke: col, "stroke-width": changed ? 2.6 : 1.4,
+                   opacity: changed ? 1 : 0.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, g);
+      v.forEach(function (y, i) {
+        el("circle", { cx: X(i), cy: Y(y), r: changed ? 4.5 : 3, fill: col, stroke: css("--surface"), "stroke-width": 1.5, opacity: changed ? 1 : 0.5 }, g);
+      });
+      if (changed) {
+        var ly = Y(v[2]);
+        while (lanes.some(function (p) { return Math.abs(p - ly) < 13; })) ly += 13;
+        lanes.push(ly);
+        el("line", { x1: X(2) + 6, x2: m.l + iw + 12, y1: Y(v[2]), y2: ly, stroke: col, "stroke-width": 1, opacity: .5 }, g);
+        el("text", { x: m.l + iw + 16, y: ly + 4, "font-size": 11.5, "font-weight": 600, fill: col }, g).textContent = s[0] + "  " + v[0] + "→" + v[2];
+      }
+      g.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + v.join(" → "), ev.clientX, ev.clientY); });
+      g.addEventListener("mouseleave", hideTip);
+    });
   })();
 })();
 </script>
