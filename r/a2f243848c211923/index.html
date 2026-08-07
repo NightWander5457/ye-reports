@@ -521,6 +521,38 @@
     </div>
   </section>
 
+  <!-- ================= EMAIL ================= -->
+  <section id="sec-email">
+    <div class="eyebrow">家校事务</div>
+    <h2 class="serif">每个高光时刻背后，都有一条邮件线</h2>
+    <p class="lede">学术管家的另一半工作不在课堂上。Bella 的家校邮箱由我们代管，这一年需要人读、判断、代办的邮件有 248 封，另有 133 封 Seesaw 课堂动态需要逐条查看。前面写到的竞赛、宿营、EAL 结业，在邮箱里都能找到对应的那条线。</p>
+
+    <div class="chart-card">
+      <h4>月度家校邮件量</h4>
+      <p class="sub">2025.8 – 2026.8 · 需要处理的 248 封（不含 Seesaw 推送）</p>
+      <div class="chart-scroll"><svg id="chart-mail" viewBox="0 0 720 200" role="img" aria-label="月度家校邮件量柱状图"></svg></div>
+      <p class="sub" style="margin-top:10px">八九月两个月 78 封，占全年三分之一——开学建制期是全年最重的一段。</p>
+    </div>
+
+    <div class="callouts">
+      <div class="callout"><b>9 封写给 Bella 本人</b>老师主动就她个人情况来信全年 9 封，占 248 封的不到 4%。把这 9 封从里面挑出来，是这项工作的核心。</div>
+      <div class="callout"><b>同天回复 62.5%</b>16 条可核对的「校方来信—家庭回复」线程里，10 条当天回复，中位数 0 天，最长 2 天。</div>
+      <div class="callout"><b>账单零逾期</b>EAL、Term 3 学费、下学年首期与 CCA 五笔账单，全部在收到后两天内回复确认。</div>
+    </div>
+
+    <h3>六条线</h3>
+    <div class="sync">
+      <div class="row"><b>学生准证</b><span>新学年第一封邮件不是关于课程，是学生准证。8 月 5 日起与学校往返，同时向移民局提交地址变更，9 封邮件两条线并行，赶在 8 月 15 日迎新日之前办妥。</span></div>
+      <div class="row"><b>EAL 编入</b><span>8 月 14 日 EAL 负责人来信说明本学期安排，当天六封往返把方案定下来；8 月 28 日的 EAL 学费账单也是当天回复。她全年最大的短板科目，从第一天起就没有留白。</span></div>
+      <div class="row"><b>Seesaw 打不开</b><span>开学第三周家长端发现 Seesaw 登不进去，8 封邮件五天解决。这一年 Seesaw 一共推送了 133 条课堂动态——那条线当时没打通，孩子在课堂上的每一件作品家长都看不到。</span></div>
+      <div class="row"><b>Telunas 宿营</b><span>9 月 12 日同一天发起两条询问，9 月 25 日提交医疗声明与用药信息，出发前三天专门去信交代运动限制并拿到教师确认。10 封邮件、2 份表单、2 位对接人——然后才是报告里那句「5 公里徒步和跳水」。</span></div>
+      <div class="row"><b>两场数学竞赛</b><span>AMO 从 9 月 10 日收到邀请到 9 月 12 日完成报名，用了两天。UKMT 更长：3 月 18 日邀请、4 月两封校内通知、主办方两次考务细则，前后 43 天 7 封——而且这场是线上居家考，设备、网络和时段全部要家里落实。5 月的银奖是从这条线走出来的。</span></div>
+      <div class="row"><b>续读与分班</b><span>3 月 9 日收到续读通知，3 月 10 日合同电子签邀请发出，3 月 11 日系统回执「Everyone has signed」——一天签完。6 月 22 日分班公布，Bella 进入 5ARI。</span></div>
+    </div>
+
+    <p>这些事没有一件写在成绩单上，但每一件都有时限、都要用英文回、都不能漏。</p>
+  </section>
+
   <!-- ================= PLAN ================= -->
   <section id="sec-plan">
     <div class="eyebrow">写给五年级</div>
@@ -726,6 +758,35 @@
       hit.addEventListener("mouseleave", hideTip);
     });
     el("text", { x: X("2026-06-01") - 6, y: Y(100) - 12, "text-anchor": "end", "font-size": 11.5, fill: "var(--up)", "font-weight": 600 }, svg).textContent = "2026 年起连续满分";
+  })();
+
+  /* ---------- Chart: monthly email volume ---------- */
+  (function () {
+    var svg = document.getElementById("chart-mail"); if (!svg) return;
+    var months = ["25.8","25.9","25.10","25.11","25.12","26.1","26.2","26.3","26.4","26.5","26.6","26.7","26.8"];
+    var vals   = [36,42,11,19,15,27,15,19,15,15,24,6,4];
+    var W = 720, H = 200, m = { t: 16, r: 12, b: 30, l: 34 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b, maxV = 45;
+    var hexEn = css("--series-en");
+    vgrad(svg, "g-mail", lighten(hexEn, 0.28), hexEn);
+    [0, 15, 30, 45].forEach(function (v) {
+      var y = m.t + ih - (v / maxV) * ih;
+      el("line", { x1: m.l, x2: W - m.r, y1: y, y2: y, stroke: v === 0 ? css("--hairline") : css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 8, y: y + 4, "text-anchor": "end", "font-size": 11, fill: css("--muted"), "class": "num" }, svg).textContent = v;
+    });
+    var bw = Math.min(30, iw / months.length - 12);
+    months.forEach(function (mo, i) {
+      var cx = m.l + (i + 0.5) * (iw / months.length);
+      var hgt = (vals[i] / maxV) * ih, yBase = m.t + ih;
+      var g = el("g", { cursor: "default" }, svg);
+      el("rect", { x: cx - bw / 2, y: yBase - hgt, width: bw, height: Math.max(hgt, 2), rx: 3, fill: "url(#g-mail)" }, g);
+      el("text", { x: cx, y: yBase - hgt - 6, "text-anchor": "middle", "font-size": 10.5, "font-weight": 600, fill: css("--ink-2"), "class": "num" }, g).textContent = vals[i];
+      el("text", { x: cx, y: H - 10, "text-anchor": "middle", "font-size": 10.5, fill: css("--muted"), "class": "num" }, svg).textContent = mo;
+      var hit = el("rect", { x: cx - bw / 2 - 5, y: m.t, width: bw + 10, height: ih, fill: "transparent" }, g);
+      hit.addEventListener("mousemove", function (ev) { showTip("<b>20" + mo.replace(".", " 年 ") + " 月</b><br>" + vals[i] + " 封", ev.clientX, ev.clientY); });
+      hit.addEventListener("mouseleave", hideTip);
+    });
+    el("text", { x: m.l, y: 11, "font-size": 11, fill: css("--muted") }, svg).textContent = "封";
   })();
 })();
 </script>
