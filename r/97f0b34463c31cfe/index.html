@@ -231,6 +231,8 @@
   .gallery figcaption { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
   @media (max-width: 520px) { .gallery { grid-template-columns: 1fr; } }
 
+  .plan .check { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--hairline); font-size: 12.5px; color: var(--ink-2); }
+  .plan .check b { color: var(--accent); font-weight: 700; margin-right: 6px; }
   /* closing + footer */
   .closing { background: var(--surface); border: 1px solid var(--hairline); border-top: 3px solid var(--brand); border-radius: 6px; padding: 30px 32px 22px; margin-top: 28px; }
   .closing p { max-width: none; }
@@ -374,6 +376,13 @@
       </table>
     </div>
     <p class="gradekey">注：绿色行为本学年出现升档的科目（Attainment 或 Effort）。Conduct 方面，班主任 Term 1、Term 2 总评均为 M，科学、中文、计算机、音乐、体育各科全年亦为 M；Term 3 全科报告未单列班主任 Conduct 等级。EAL 科目不评级，仅给文字评语。</p>
+    <div class="chart-card">
+      <h4>三学期走势</h4>
+      <p class="sub">Attainment 学业达成 · C 需关注 → B 低于预期 → M 达标 → E 典范</p>
+      <div class="chart-scroll"><svg id="chart-grades" viewBox="0 0 720 250" role="img" aria-label="各科三学期成绩走势图"></svg></div>
+      <p class="sub" style="margin-top:10px">灰线为三学期持平的科目；绿线上行、琥珀线下行，并在右侧标注科目名。</p>
+    </div>
+
 
     <div class="callouts">
       <div class="callout"><b>唯一的 C 消失了</b>Term 1 英文 Attainment 为 C，Term 2 升到 B 并在 Term 3 保持。学校成绩单原话：「英语进步最明显」。</div>
@@ -560,19 +569,19 @@
     <div class="plan">
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">英文与数学的年级达标线</b>两科 Attainment 全年为 <b>B</b>。Term 3 班主任在 6 月 1 日的邮件里写明，英文与数学仍低于该年级的期望水平，并给出了假期复习清单与资源链接。</div>
-        <div class="next"><span class="tag">G4 计划</span>照单执行：英文每日短练（大小写与标点、扩展句、句首状语短语、描写词汇、高频拼写、规律阅读与自查校对），数学每天 5–10 题练 12×12 口诀与四则运算。开学后与 4ADE 的单元进度逐周对齐。</div>
+        <div class="next"><span class="tag">G4 计划</span>照单执行：英文每日短练（大小写与标点、扩展句、句首状语短语、描写词汇、高频拼写、规律阅读与自查校对），数学每天 5–10 题练 12×12 口诀与四则运算。开学后与 4ADE 的单元进度逐周对齐。<div class="check"><b>验收</b>Term 1 成绩单：英文与数学的 Attainment 是否守住或升到 M</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">语法的条件反射还没建立</b>「看题懂、动笔错」是 5 月的原话；八大时态碰到复合语法点仍会顾此失彼，被动语态的 being 与 been 容易混，第三人称单数的尾缀也常漏。</div>
-        <div class="next"><span class="tag">G4 计划</span>高频短时的机械化训练，每 3–4 周回访一次旧时态；把「一圈特征词、二看主语」的双步检查固定成动笔前的规定动作，从提示下能改，练到不提示也能查。</div>
+        <div class="next"><span class="tag">G4 计划</span>高频短时的机械化训练，每 3–4 周回访一次旧时态；把「一圈特征词、二看主语」的双步检查固定成动笔前的规定动作，从提示下能改，练到不提示也能查。<div class="check"><b>验收</b>每 3–4 周回访旧时态，不给提示也能自己圈出关键词判断</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">把想法转成英文书面表达</b>4 月的记录写得很清楚：主要卡在把脑中的想法转成英文书面表达。学校 Term 3 英语评语也指向时态、语序、标点，以及独立组织想法。</div>
-        <div class="next"><span class="tag">G4 计划</span>从写作框架走向独立成篇：句式扩展、连接词与描写词库逐周积累，每个单元完成一篇成文并自改一轮，直接对接学校的写作任务。</div>
+        <div class="next"><span class="tag">G4 计划</span>从写作框架走向独立成篇：句式扩展、连接词与描写词库逐周积累，每个单元完成一篇成文并自改一轮，直接对接学校的写作任务。<div class="check"><b>验收</b>每个单元完成一篇成文并自改一轮，直接对接学校写作任务</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">乘法表，以及练习的连续性</b>2 月起他被纳入学校的 Times Tables Boost 强化课外班。YE 全年多次记录同一件事：一旦中断练习，已掌握的内容会明显遗忘。</div>
-        <div class="next"><span class="tag">G4 计划</span>每天 5 分钟口诀速记，每周固定作业跟到底检查，每月一次保温小测。把「不中断」本身当成一个可以练的目标。</div>
+        <div class="next"><span class="tag">G4 计划</span>每天 5 分钟口诀速记，每周固定作业跟到底检查，每月一次保温小测。把「不中断」本身当成一个可以练的目标。<div class="check"><b>验收</b>每月一次口诀保温小测，12×12 无停顿；练习不中断本身就是目标</div></div>
       </div>
     </div>
 
@@ -754,6 +763,51 @@
         showTip("<b>" + dd + "</b><br>" + p.t + "（" + p.v + "%）", ev.clientX, ev.clientY);
       });
       hit.addEventListener("mouseleave", hideTip);
+    });
+  })();
+
+  /* ---------- Chart: grade slope ---------- */
+  (function () {
+    var svg = document.getElementById("chart-grades"); if (!svg) return;
+    var SUBJ = [["English 英文", "C,B,B"], ["Mandarin 中文", "M,M,M"], ["Mathematics 数学", "B,B,B"], ["Science 科学", "B,B,B"], ["Topic 人文", "B,B,B"], ["Drama 戏剧", "B,B,B"], ["Art & Design 艺术", "M,M,M"], ["Computer Science 计算机", "M,M,M"], ["PE & Health 体育", "M,M,M"], ["Music 音乐", "M,M,B"]];
+    var LV = { "C": 1, "B": 2, "M": 3, "E": 4 };
+    var W = 720, H = 250, m = { t: 22, r: 168, b: 34, l: 42 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    function X(i) { return m.l + i * (iw / 2); }
+    function Y(v) { return m.t + ih - ((v - 1) / 3) * ih; }
+    ["C","B","M","E"].forEach(function (k) {
+      var y = Y(LV[k]);
+      el("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", "font-size": 12, "font-weight": 600, fill: css("--muted") }, svg).textContent = k;
+    });
+    ["Term 1","Term 2","Term 3"].forEach(function (t, i) {
+      el("text", { x: X(i), y: H - 12, "text-anchor": "middle", "font-size": 11.5, fill: css("--muted") }, svg).textContent = t;
+    });
+    var up = css("--up"), down = css("--gold"), flat = css("--grid");
+    var lanes = [];
+    SUBJ.forEach(function (s) {
+      var v = s[1].split(",").map(function (k) { return LV[k.trim()]; });
+      var changed = v[0] !== v[2] || v[0] !== v[1];
+      var dir = v[2] - v[0];
+      var col = !changed ? flat : (dir > 0 ? up : (dir < 0 ? down : up));
+      var d = v.map(function (y, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(y).toFixed(1); }).join(" ");
+      var g = el("g", {}, svg);
+      el("path", { d: d, fill: "none", stroke: col, "stroke-width": changed ? 2.6 : 1.4,
+                   opacity: changed ? 1 : 0.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, g);
+      v.forEach(function (y, i) {
+        el("circle", { cx: X(i), cy: Y(y), r: changed ? 4.5 : 3, fill: col,
+                       stroke: css("--surface"), "stroke-width": 1.5, opacity: changed ? 1 : 0.5 }, g);
+      });
+      if (changed) {
+        var ly = Y(v[2]);
+        while (lanes.some(function (p) { return Math.abs(p - ly) < 13; })) ly += 13;
+        lanes.push(ly);
+        el("line", { x1: X(2) + 6, x2: m.l + iw + 12, y1: Y(v[2]), y2: ly, stroke: col, "stroke-width": 1, opacity: .5 }, g);
+        el("text", { x: m.l + iw + 16, y: ly + 4, "font-size": 12, "font-weight": 600, fill: col }, g).textContent =
+          s[0] + "  " + s[1].split(",")[0] + "→" + s[1].split(",")[2];
+      }
+      g.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + s[1].replace(/,/g, " → "), ev.clientX, ev.clientY); });
+      g.addEventListener("mouseleave", hideTip);
     });
   })();
 })();
