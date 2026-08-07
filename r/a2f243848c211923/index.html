@@ -231,6 +231,8 @@
   .gallery figcaption { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
   @media (max-width: 520px) { .gallery { grid-template-columns: 1fr; } }
 
+  .plan .check { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--hairline); font-size: 12.5px; color: var(--ink-2); }
+  .plan .check b { color: var(--accent); font-weight: 700; margin-right: 6px; }
   /* closing + footer */
   .closing { background: var(--surface); border: 1px solid var(--hairline); border-top: 3px solid var(--brand); border-radius: 6px; padding: 30px 32px 22px; margin-top: 28px; }
   .closing p { max-width: none; }
@@ -362,6 +364,13 @@
       </table>
     </div>
     <p class="gradekey">注：绿色行为本学年成绩上升科目；班主任整体 Conduct（行为）两学期均为 E。EAL 科目不评级、仅评语。</p>
+    <div class="chart-card">
+      <h4>三学期走势</h4>
+      <p class="sub">Attainment 学业达成 · C 需关注 → B 低于预期 → M 达标 → E 典范</p>
+      <div class="chart-scroll"><svg id="chart-grades" viewBox="0 0 720 250" role="img" aria-label="各科三学期成绩走势图"></svg></div>
+      <p class="sub" style="margin-top:10px">灰线为三学期持平的科目；绿线上行、琥珀线下行，并在右侧标注科目名。</p>
+    </div>
+
 
     <div class="callouts">
       <div class="callout"><b>3 个科目升档</b>英文、戏剧、体育全部从 B 升到 M——没有一科下滑，全年零 C。</div>
@@ -504,6 +513,9 @@
       <div class="q-card"><span class="mark">“</span>「Bella 私下完成了不少题目，超过老师布置的量，而且大部分都是对的。」<footer>YE 数学课反馈 · 2025.10.18</footer></div>
       <div class="q-card"><span class="mark">“</span>「她能敏锐地捕捉语境中的暗示词，准确判断是否需要使用虚拟形式。」<footer>YE 英文课反馈 · 2026.3.23 · 虚拟语气单元</footer></div>
       <div class="q-card"><span class="mark">“</span>「高度自律勤奋，中文基础非常扎实，一贯高质量完成。」<footer>中文教师 孙老师 · Term 3</footer></div>
+    
+      <div class="q-card"><span class="mark">“</span><span class="en-q">Yuchen has made significant progress in their English and will therefore no longer be required to continue with the EAL Extended Programme… Yuchen should be proud of their progress and development over the past term.</span><br>「雨晨的英语已取得显著进步，因此不再需要继续参加 EAL 强化项目……她应当为这一学期的进步与成长感到骄傲。」<footer>EAL 项目协调人 Rebecca Moore · 毕业通知信 · 2025.12.8</footer></div>
+      <div class="q-card"><span class="mark">“</span><span class="en-q">I hope that Yuchen has felt that the Programme has allowed them to develop their English and provide them with the skills and confidence to further succeed at NLCS Singapore.</span><br>「希望雨晨能感受到，这个项目让她的英语得到了发展，也给了她在 NLCS 继续取得成功所需要的能力与信心。」<footer>同一封毕业通知信 · 2025.12.8</footer></div>
     </div>
   </section>
 
@@ -561,19 +573,19 @@
     <div class="plan">
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">口语自信与课堂表达</b>贯穿全年报告的共同主题：数学老师希望她「主动解释思路」，班主任的年终目标是「与成人交谈、在同伴面前发言更自信」。已有明显进步，但仍是第一目标。</div>
-        <div class="next"><span class="tag">G5 计划</span>把「讲出来」变成课堂常规：数学课每周一道讲题训练（自己当小老师），英文课加入复述与观点表达环节，与学校鼓励举手的策略形成合力。</div>
+        <div class="next"><span class="tag">G5 计划</span>把「讲出来」变成课堂常规：数学课每周一道讲题训练（自己当小老师），英文课加入复述与观点表达环节，与学校鼓励举手的策略形成合力。<div class="check"><b>验收</b>11 月 · 数学课每周一道讲题，不用提示能讲完；学期末看班主任评语里有没有出现「主动发言」</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">英语语法基础的巩固</b>学校指出 word endings 与动词形态待夯实；YE 课堂记录到虚拟语气、代词、定语从句在间隔一段时间后会遗忘。</div>
-        <div class="next"><span class="tag">G5 计划</span>语法体系化滚动复习（每 3–4 周回访旧知识点），并把语法点落进写作应用——学校 G5 写作任务将是最好的练兵场。</div>
+        <div class="next"><span class="tag">G5 计划</span>语法体系化滚动复习（每 3–4 周回访旧知识点），并把语法点落进写作应用——学校 G5 写作任务将是最好的练兵场。<div class="check"><b>验收</b>每 3–4 周一次旧语法点回访，正确率稳定在 8/10 以上</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">数学：长题审题与过程表达</b>竞赛长题「偶尔无法完全理解题意」；分数运算、LCM 等方法存在间隔遗忘；应用题的书写规范仍在养成。</div>
-        <div class="next"><span class="tag">G5 计划</span>「抓关键信息」审题训练常态化；继续竞赛线（UKMT / SASMO），目标从银奖向上冲击；计算基本功每月小测保温。</div>
+        <div class="next"><span class="tag">G5 计划</span>「抓关键信息」审题训练常态化；继续竞赛线（UKMT / SASMO），目标从银奖向上冲击；计算基本功每月小测保温。<div class="check"><b>验收</b>12 月竞赛模考，长题不再需要老师帮忙读题；每月一次计算保温小测</div></div>
       </div>
       <div class="row">
         <div class="now"><span class="tag">现状</span><b class="topic">科学：术语与实验设计</b>学校建议复习有难度的科学术语，并学会自主设定自变量、因变量与控制变量。</div>
-        <div class="next"><span class="tag">G5 计划</span>建立科学词汇卡随学随记；结合学校单元做「自己设计一个实验」专项，把 G4 已经掌握出色的变量概念用起来。</div>
+        <div class="next"><span class="tag">G5 计划</span>建立科学词汇卡随学随记；结合学校单元做「自己设计一个实验」专项，把 G4 已经掌握出色的变量概念用起来。<div class="check"><b>验收</b>G5 第一个科学单元，能自己写出一份写明三类变量的实验方案</div></div>
       </div>
     </div>
 
@@ -787,6 +799,51 @@
       hit.addEventListener("mouseleave", hideTip);
     });
     el("text", { x: m.l, y: 11, "font-size": 11, fill: css("--muted") }, svg).textContent = "封";
+  })();
+
+  /* ---------- Chart: grade slope ---------- */
+  (function () {
+    var svg = document.getElementById("chart-grades"); if (!svg) return;
+    var SUBJ = [["English 英文", "B,M,M"], ["Mathematics 数学", "E,E,E"], ["Mandarin 中文", "E,E,E"], ["Drama 戏剧", "B,M,M"], ["PE & Health 体育", "B,B,M"], ["Science 科学", "M,M,M"], ["Topic 人文", "M,M,M"], ["Art & Design 艺术", "M,M,M"], ["Computer Science 计算机", "M,M,M"], ["Music 音乐", "M,M,M"]];
+    var LV = { "C": 1, "B": 2, "M": 3, "E": 4 };
+    var W = 720, H = 250, m = { t: 22, r: 168, b: 34, l: 42 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    function X(i) { return m.l + i * (iw / 2); }
+    function Y(v) { return m.t + ih - ((v - 1) / 3) * ih; }
+    ["C","B","M","E"].forEach(function (k) {
+      var y = Y(LV[k]);
+      el("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", "font-size": 12, "font-weight": 600, fill: css("--muted") }, svg).textContent = k;
+    });
+    ["Term 1","Term 2","Term 3"].forEach(function (t, i) {
+      el("text", { x: X(i), y: H - 12, "text-anchor": "middle", "font-size": 11.5, fill: css("--muted") }, svg).textContent = t;
+    });
+    var up = css("--up"), down = css("--gold"), flat = css("--grid");
+    var lanes = [];
+    SUBJ.forEach(function (s) {
+      var v = s[1].split(",").map(function (k) { return LV[k.trim()]; });
+      var changed = v[0] !== v[2] || v[0] !== v[1];
+      var dir = v[2] - v[0];
+      var col = !changed ? flat : (dir > 0 ? up : (dir < 0 ? down : up));
+      var d = v.map(function (y, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(y).toFixed(1); }).join(" ");
+      var g = el("g", {}, svg);
+      el("path", { d: d, fill: "none", stroke: col, "stroke-width": changed ? 2.6 : 1.4,
+                   opacity: changed ? 1 : 0.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, g);
+      v.forEach(function (y, i) {
+        el("circle", { cx: X(i), cy: Y(y), r: changed ? 4.5 : 3, fill: col,
+                       stroke: css("--surface"), "stroke-width": 1.5, opacity: changed ? 1 : 0.5 }, g);
+      });
+      if (changed) {
+        var ly = Y(v[2]);
+        while (lanes.some(function (p) { return Math.abs(p - ly) < 13; })) ly += 13;
+        lanes.push(ly);
+        el("line", { x1: X(2) + 6, x2: m.l + iw + 12, y1: Y(v[2]), y2: ly, stroke: col, "stroke-width": 1, opacity: .5 }, g);
+        el("text", { x: m.l + iw + 16, y: ly + 4, "font-size": 12, "font-weight": 600, fill: col }, g).textContent =
+          s[0] + "  " + s[1].split(",")[0] + "→" + s[1].split(",")[2];
+      }
+      g.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + s[1].replace(/,/g, " → "), ev.clientX, ev.clientY); });
+      g.addEventListener("mouseleave", hideTip);
+    });
   })();
 })();
 </script>
