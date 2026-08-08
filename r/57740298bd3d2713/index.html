@@ -357,9 +357,9 @@
     <p class="gradekey">注：绿色行为本学年成绩上升科目。Term 3 报告的班主任评语中将 Biology 写作 Final Grade 3，与成绩表的 4 不符，本表以成绩表为准。全年无 C（Cause for concern）等第。</p>
     <div class="chart-card">
       <h4>三学期走势</h4>
-      <p class="sub">MYP 七分制 · 左 2 → 右 7（7 最高）· 未出分的计算机与 EAL 未纳入</p>
+      <p class="sub">MYP 七分制，7 分最高 · 未出分的计算机与 EAL 未纳入</p>
       <div class="chart-scroll"><svg id="chart-grades" viewBox="0 0 720 260" role="img" aria-label="各科三学期成绩走势图"></svg></div>
-      <p class="sub" style="margin-top:10px">每行一个科目：空心圆是 Term 1，实心圆是 Term 3，中间的小圈表示 Term 2 曾高于或低于两端。有变化的科目加粗并在右侧标出。</p>
+      <p class="sub" style="margin-top:10px">箭头从 Term 1 指向 Term 3，Term 2 的成绩见上面的表。没有箭头的科目，三学期没有变化。</p>
     </div>
 
 
@@ -656,44 +656,40 @@
   })();
 
 
-  /* ---------- Chart: grade track rows ---------- */
+  /* ---------- Chart: grade change arrows ---------- */
   (function () {
     var svg = document.getElementById("chart-grades"); if (!svg) return;
     var SUBJ = [["Mathematics 数学", "3,5,5"], ["Geography 地理", "4,5,5"], ["Design & Eng 设计工程", "4,5,5"], ["Physics 物理", "3,5,4"], ["Chemistry 化学", "4,5,4"], ["Biology 生物", "5,5,4"], ["Mandarin 中文", "5,5,5"], ["History 历史", "5,5,5"], ["Music 音乐", "5,5,5"], ["Drama 戏剧", "5,5,5"], ["Art 艺术", "5,5,5"], ["PE & Health 体育", "5,5,5"], ["English 英文", "3,3,3"]], TICKS = [2, 3, 4, 5, 6, 7], LV = {};
-    var rowH = 25, padTop = 34, padBot = 12;
+    var rowH = 25, padTop = 30, padBot = 12;
     var W = 720, H = padTop + SUBJ.length * rowH + padBot;
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    var x0 = 168, x1 = 566;
+    var x0 = 176, x1 = 558;
     function X(v) { return x0 + ((v - TICKS[0]) / (TICKS[TICKS.length-1] - TICKS[0])) * (x1 - x0); }
     TICKS.forEach(function (t) {
-      el("line", { x1: X(t), x2: X(t), y1: padTop - 14, y2: H - padBot, stroke: css("--grid"), "stroke-width": 1 }, svg);
-      el("text", { x: X(t), y: padTop - 20, "text-anchor": "middle", "font-size": 11.5, "font-weight": 600, fill: css("--muted") }, svg).textContent = LV[t] || t;
+      el("line", { x1: X(t), x2: X(t), y1: padTop - 12, y2: H - padBot, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: X(t), y: padTop - 18, "text-anchor": "middle", "font-size": 12, "font-weight": 600, fill: css("--muted") }, svg).textContent = LV[t] || t;
     });
     var up = css("--up"), down = css("--gold"), flat = css("--muted");
     SUBJ.forEach(function (s, i) {
-      var v = s[1].split(",").map(function (k) { var t = k.trim(); return isNaN(+t) ? {C:1,B:2,M:3,E:4}[t] : +t; });
-      var y = padTop + i * rowH + rowH / 2;
-      var dir = v[2] - v[0], changed = dir !== 0;
-      var col = changed ? (dir > 0 ? up : down) : flat;
-      el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1, opacity: .55 }, svg);
-      el("text", { x: x0 - 12, y: y + 4, "text-anchor": "end", "font-size": 12.5,
+      var raw = s[1].split(","), v = raw.map(function (k) { var t = k.trim(); return isNaN(+t) ? {C:1,B:2,M:3,E:4}[t] : +t; });
+      var y = padTop + i * rowH + rowH / 2, a = v[0], b = v[2];
+      var changed = a !== b, col = changed ? (b > a ? up : down) : flat;
+      el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1, opacity: .5 }, svg);
+      el("text", { x: x0 - 14, y: y + 4.5, "text-anchor": "end", "font-size": 12.5,
                    "font-weight": changed ? 700 : 400, fill: changed ? css("--ink") : css("--ink-2") }, svg).textContent = s[0];
-      if (changed) el("line", { x1: X(v[0]), x2: X(v[2]), y1: y, y2: y, stroke: col, "stroke-width": 3.5, "stroke-linecap": "round" }, svg);
-      el("circle", { cx: X(v[0]), cy: y, r: 5, fill: css("--surface"), stroke: col, "stroke-width": 2 }, svg);
-      var mid = v[1], off = (mid > Math.max(v[0], v[2]) || mid < Math.min(v[0], v[2]));
-      if (mid !== v[0] && mid !== v[2])
-      el("circle", { cx: X(mid), cy: y, r: off ? 3.5 : 3, fill: off ? css("--surface") : col,
-                     stroke: off ? col : "none", "stroke-width": 1.6, opacity: off ? 1 : .5 }, svg);
-      el("circle", { cx: X(v[2]), cy: y, r: 5.5, fill: col, stroke: css("--surface"), "stroke-width": 1.5 }, svg);
-      if (changed) {
-        el("text", { x: x1 + 14, y: y + 4, "font-size": 12, "font-weight": 700, fill: col }, svg).textContent =
-          (dir > 0 ? "↑ " : "↓ ") + s[1].split(",")[0] + " → " + s[1].split(",")[2];
+      if (!changed) {
+        el("circle", { cx: X(a), cy: y, r: 4, fill: flat, opacity: .5 }, svg);
+      } else {
+        var d = b > a ? 1 : -1, hd = 11;
+        el("line", { x1: X(a), x2: X(b) - d * hd, y1: y, y2: y, stroke: col, "stroke-width": 3.5 }, svg);
+        el("circle", { cx: X(a), cy: y, r: 4.5, fill: col }, svg);
+        el("path", { d: "M" + X(b) + " " + y + "L" + (X(b) - d * hd) + " " + (y - 6.2) + "L" + (X(b) - d * hd) + " " + (y + 6.2) + "Z", fill: col }, svg);
+        el("text", { x: x1 + 22, y: y + 4.5, "font-size": 12, "font-weight": 700, fill: col }, svg).textContent = raw[0].trim() + " → " + raw[2].trim();
       }
-      var hit = el("rect", { x: 0, y: y - rowH/2, width: W, height: rowH, fill: "transparent" }, svg);
+      var hit = el("rect", { x: 0, y: y - rowH / 2, width: W, height: rowH, fill: "transparent" }, svg);
       hit.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + s[1].replace(/,/g, " → "), ev.clientX, ev.clientY); });
       hit.addEventListener("mouseleave", hideTip);
     });
-    el("text", { x: x0 - 12, y: padTop - 20, "text-anchor": "end", "font-size": 11, fill: css("--muted") }, svg).textContent = "空心＝Term 1  实心＝Term 3";
   })();
 })();
 </script>
