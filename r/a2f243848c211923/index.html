@@ -366,9 +366,9 @@
     <p class="gradekey">注：绿色行为本学年成绩上升科目；班主任整体 Conduct（行为）两学期均为 E。EAL 科目不评级、仅评语。</p>
     <div class="chart-card">
       <h4>三学期走势</h4>
-      <p class="sub">Attainment 学业达成 · C 需关注 → B 低于预期 → M 达标 → E 典范</p>
+      <p class="sub">Attainment 学业达成 · 左 C 需关注 → 右 E 典范</p>
       <div class="chart-scroll"><svg id="chart-grades" viewBox="0 0 720 250" role="img" aria-label="各科三学期成绩走势图"></svg></div>
-      <p class="sub" style="margin-top:10px">灰线为三学期持平的科目；绿线上行、琥珀线下行，并在右侧标注科目名。</p>
+      <p class="sub" style="margin-top:10px">每行一个科目：空心圆是 Term 1，实心圆是 Term 3，中间的小圈表示 Term 2 曾高于或低于两端。有变化的科目加粗并在右侧标出。</p>
     </div>
 
 
@@ -801,49 +801,45 @@
     el("text", { x: m.l, y: 11, "font-size": 11, fill: css("--muted") }, svg).textContent = "封";
   })();
 
-  /* ---------- Chart: grade slope ---------- */
+
+  /* ---------- Chart: grade track rows ---------- */
   (function () {
     var svg = document.getElementById("chart-grades"); if (!svg) return;
-    var SUBJ = [["English 英文", "B,M,M"], ["Mathematics 数学", "E,E,E"], ["Mandarin 中文", "E,E,E"], ["Drama 戏剧", "B,M,M"], ["PE & Health 体育", "B,B,M"], ["Science 科学", "M,M,M"], ["Topic 人文", "M,M,M"], ["Art & Design 艺术", "M,M,M"], ["Computer Science 计算机", "M,M,M"], ["Music 音乐", "M,M,M"]];
-    var LV = { "C": 1, "B": 2, "M": 3, "E": 4 };
-    var W = 720, H = 250, m = { t: 22, r: 168, b: 34, l: 42 };
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    function X(i) { return m.l + i * (iw / 2); }
-    function Y(v) { return m.t + ih - ((v - 1) / 3) * ih; }
-    ["C","B","M","E"].forEach(function (k) {
-      var y = Y(LV[k]);
-      el("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
-      el("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", "font-size": 12, "font-weight": 600, fill: css("--muted") }, svg).textContent = k;
+    var SUBJ = [["English 英文", "B,M,M"], ["Drama 戏剧", "B,M,M"], ["PE & Health 体育", "B,B,M"], ["Mathematics 数学", "E,E,E"], ["Mandarin 中文", "E,E,E"], ["Science 科学", "M,M,M"], ["Topic 人文", "M,M,M"], ["Art & Design 艺术", "M,M,M"], ["Computer Science 计算机", "M,M,M"], ["Music 音乐", "M,M,M"]], TICKS = [1, 2, 3, 4], LV = {"1": "C", "2": "B", "3": "M", "4": "E"};
+    var rowH = 25, padTop = 34, padBot = 12;
+    var W = 720, H = padTop + SUBJ.length * rowH + padBot;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    var x0 = 168, x1 = 566;
+    function X(v) { return x0 + ((v - TICKS[0]) / (TICKS[TICKS.length-1] - TICKS[0])) * (x1 - x0); }
+    TICKS.forEach(function (t) {
+      el("line", { x1: X(t), x2: X(t), y1: padTop - 14, y2: H - padBot, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: X(t), y: padTop - 20, "text-anchor": "middle", "font-size": 11.5, "font-weight": 600, fill: css("--muted") }, svg).textContent = LV[t] || t;
     });
-    ["Term 1","Term 2","Term 3"].forEach(function (t, i) {
-      el("text", { x: X(i), y: H - 12, "text-anchor": "middle", "font-size": 11.5, fill: css("--muted") }, svg).textContent = t;
-    });
-    var up = css("--up"), down = css("--gold"), flat = css("--grid");
-    var lanes = [];
-    SUBJ.forEach(function (s) {
-      var v = s[1].split(",").map(function (k) { return LV[k.trim()]; });
-      var changed = v[0] !== v[2] || v[0] !== v[1];
-      var dir = v[2] - v[0];
-      var col = !changed ? flat : (dir > 0 ? up : (dir < 0 ? down : up));
-      var d = v.map(function (y, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(y).toFixed(1); }).join(" ");
-      var g = el("g", {}, svg);
-      el("path", { d: d, fill: "none", stroke: col, "stroke-width": changed ? 2.6 : 1.4,
-                   opacity: changed ? 1 : 0.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, g);
-      v.forEach(function (y, i) {
-        el("circle", { cx: X(i), cy: Y(y), r: changed ? 4.5 : 3, fill: col,
-                       stroke: css("--surface"), "stroke-width": 1.5, opacity: changed ? 1 : 0.5 }, g);
-      });
+    var up = css("--up"), down = css("--gold"), flat = css("--muted");
+    SUBJ.forEach(function (s, i) {
+      var v = s[1].split(",").map(function (k) { var t = k.trim(); return isNaN(+t) ? {C:1,B:2,M:3,E:4}[t] : +t; });
+      var y = padTop + i * rowH + rowH / 2;
+      var dir = v[2] - v[0], changed = dir !== 0;
+      var col = changed ? (dir > 0 ? up : down) : flat;
+      el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1, opacity: .55 }, svg);
+      el("text", { x: x0 - 12, y: y + 4, "text-anchor": "end", "font-size": 12.5,
+                   "font-weight": changed ? 700 : 400, fill: changed ? css("--ink") : css("--ink-2") }, svg).textContent = s[0];
+      if (changed) el("line", { x1: X(v[0]), x2: X(v[2]), y1: y, y2: y, stroke: col, "stroke-width": 3.5, "stroke-linecap": "round" }, svg);
+      el("circle", { cx: X(v[0]), cy: y, r: 5, fill: css("--surface"), stroke: col, "stroke-width": 2 }, svg);
+      var mid = v[1], off = (mid > Math.max(v[0], v[2]) || mid < Math.min(v[0], v[2]));
+      if (mid !== v[0] && mid !== v[2])
+      el("circle", { cx: X(mid), cy: y, r: off ? 3.5 : 3, fill: off ? css("--surface") : col,
+                     stroke: off ? col : "none", "stroke-width": 1.6, opacity: off ? 1 : .5 }, svg);
+      el("circle", { cx: X(v[2]), cy: y, r: 5.5, fill: col, stroke: css("--surface"), "stroke-width": 1.5 }, svg);
       if (changed) {
-        var ly = Y(v[2]);
-        while (lanes.some(function (p) { return Math.abs(p - ly) < 13; })) ly += 13;
-        lanes.push(ly);
-        el("line", { x1: X(2) + 6, x2: m.l + iw + 12, y1: Y(v[2]), y2: ly, stroke: col, "stroke-width": 1, opacity: .5 }, g);
-        el("text", { x: m.l + iw + 16, y: ly + 4, "font-size": 12, "font-weight": 600, fill: col }, g).textContent =
-          s[0] + "  " + s[1].split(",")[0] + "→" + s[1].split(",")[2];
+        el("text", { x: x1 + 14, y: y + 4, "font-size": 12, "font-weight": 700, fill: col }, svg).textContent =
+          (dir > 0 ? "↑ " : "↓ ") + s[1].split(",")[0] + " → " + s[1].split(",")[2];
       }
-      g.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + s[1].replace(/,/g, " → "), ev.clientX, ev.clientY); });
-      g.addEventListener("mouseleave", hideTip);
+      var hit = el("rect", { x: 0, y: y - rowH/2, width: W, height: rowH, fill: "transparent" }, svg);
+      hit.addEventListener("mousemove", function (ev) { showTip("<b>" + s[0] + "</b><br>" + s[1].replace(/,/g, " → "), ev.clientX, ev.clientY); });
+      hit.addEventListener("mouseleave", hideTip);
     });
+    el("text", { x: x0 - 12, y: padTop - 20, "text-anchor": "end", "font-size": 11, fill: css("--muted") }, svg).textContent = "空心＝Term 1  实心＝Term 3";
   })();
 })();
 </script>
