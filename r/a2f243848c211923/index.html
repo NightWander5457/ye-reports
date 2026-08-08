@@ -396,7 +396,8 @@
     <div class="chart-card">
       <h4>单词听写正确率</h4>
       <p class="sub">YE 英文课历次听写记录 · 2025.8 – 2026.6</p>
-      <div class="chart-scroll"><svg id="chart-dictation" viewBox="0 0 720 240" role="img" aria-label="听写正确率趋势折线图"></svg></div>
+      <div class="chart-scroll"><svg id="chart-dictation" viewBox="0 0 720 214" role="img" aria-label="历次单词听写正确率柱状图"></svg></div>
+      <p class="sub" style="margin:8px 0 0">一根柱子是一次听写，柱顶标的是当次对的词数。听写词量每次不同，看对的词数比看百分比准。</p>
     </div>
 
     <h3>十二月：学校的官方认可</h3>
@@ -705,71 +706,47 @@
     });
   })();
 
-  /* ---------- Chart 3: dictation accuracy line ---------- */
+  /* ---------- Chart 3: dictation accuracy (columns) ---------- */
   (function () {
     var svg = document.getElementById("chart-dictation"); if (!svg) return;
-    svg.setAttribute("viewBox", "0 0 720 216");
     var pts = [
-      { d: "2025-08-08", v: 84.6, t: "22 / 26" },
-      { d: "2025-08-22", v: 87.5, t: "21 / 24" },
-      { d: "2025-08-29", v: 92.6, t: "25 / 27" },
-      { d: "2025-10-11", v: 93.8, t: "15 / 16" },
-      { d: "2025-10-25", v: 100, t: "全对" },
-      { d: "2025-11-29", v: 86.7, t: "13 / 15" },
-      { d: "2025-12-06", v: 95, t: "19 / 20" },
-      { d: "2026-04-13", v: 100, t: "全对" },
-      { d: "2026-06-01", v: 100, t: "全对" }
+      { f: "2025.8.8", v: 84.6, t: "22 / 26", s: null, x: "8.8", n: null },
+      { f: "2025.8.22", v: 87.5, t: "21 / 24", s: null, x: "8.22", n: null },
+      { f: "2025.8.29", v: 92.6, t: "25 / 27", s: null, x: "8.29", n: null },
+      { f: "2025.10.11", v: 93.8, t: "15 / 16", s: null, x: "10.11", n: null },
+      { f: "2025.10.25", v: 100, t: "全对", s: null, x: "10.25", n: null },
+      { f: "2025.11.29", v: 86.7, t: "13 / 15", s: null, x: "11.29", n: null },
+      { f: "2025.12.6", v: 95, t: "19 / 20", s: null, x: "12.6", n: null },
+      { f: "2026.4.13", v: 100, t: "全对", s: null, x: "2026.4.13", n: null },
+      { f: "2026.6.1", v: 100, t: "全对", s: null, x: "6.1", n: null }
     ];
-    var W = 720, H = 216, m = { t: 20, r: 24, b: 30, l: 44 };
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    var t0 = new Date("2025-07-25").getTime(), t1 = new Date("2026-06-15").getTime();
-    var v0 = 50, v1 = 100;
-    function X(d) { return m.l + ((new Date(d).getTime() - t0) / (t1 - t0)) * iw; }
-    function Y(v) { return m.t + ih - ((v - v0) / (v1 - v0)) * ih; }
-    [50, 75, 100].forEach(function (v) {
-      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: css("--grid"), "stroke-width": 1 }, svg);
-      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", "font-size": 11, fill: css("--muted"), "class": "num" }, svg).textContent = v + "%";
+    var HL = [4, 7, 8];
+    var W = 720, m = { t: 32, r: 14, b: 32, l: 42 }, ih = 150;
+    var H = m.t + ih + m.b, iw = W - m.l - m.r, n = pts.length;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    var slot = iw / n, bw = Math.min(42, slot * 0.52);
+    function Y(v) { return m.t + ih - (v / 100) * ih; }
+    function CX(i) { return m.l + slot * (i + 0.5); }
+    [0, 25, 50, 75, 100].forEach(function (v) {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: css("--grid"), "stroke-width": v === 0 ? 1.4 : 1 }, svg);
+      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", "font-size": 10.5, fill: css("--muted"), "class": "num" }, svg).textContent = v + "%";
     });
-    ["2025-08-01|25.8", "2025-10-01|25.10", "2025-12-01|25.12", "2026-02-01|26.2", "2026-04-01|26.4", "2026-06-01|26.6"].forEach(function (s) {
-      var p = s.split("|");
-      el("text", { x: X(p[0]), y: H - 12, "text-anchor": "middle", "font-size": 11, fill: css("--muted"), "class": "num" }, svg).textContent = p[1];
-    });
-    var P = pts.map(function (p) { return [X(p.d), Y(p.v)]; });
-    var yTop = Y(100);
-    function smooth(points) {
-      var d = "M" + points[0][0].toFixed(1) + " " + points[0][1].toFixed(1);
-      for (var i = 0; i < points.length - 1; i++) {
-        var p0 = points[Math.max(0, i - 1)], p1 = points[i], p2 = points[i + 1], p3 = points[Math.min(points.length - 1, i + 2)];
-        var c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = Math.max(p1[1] + (p2[1] - p0[1]) / 6, yTop);
-        var c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = Math.max(p2[1] - (p3[1] - p1[1]) / 6, yTop);
-        d += "C" + c1x.toFixed(1) + " " + c1y.toFixed(1) + " " + c2x.toFixed(1) + " " + c2y.toFixed(1) + " " + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
-      }
-      return d;
-    }
-    var hexLine = css("--series-en");
-    var defs = el("defs", {}, svg);
-    var ga = el("linearGradient", { id: "g-area", x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
-    el("stop", { offset: "0%", "stop-color": alpha(hexLine, 0.22) }, ga);
-    el("stop", { offset: "100%", "stop-color": alpha(hexLine, 0) }, ga);
-    var line = smooth(P);
-    var baseY = m.t + ih;
-    el("path", { d: line + " L" + P[P.length - 1][0].toFixed(1) + " " + baseY + " L" + P[0][0].toFixed(1) + " " + baseY + " Z", fill: "url(#g-area)", stroke: "none" }, svg);
-    el("path", { d: line, fill: "none", stroke: hexLine, "stroke-width": 2.5, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
-    var dipX = X("2025-11-15");
-    el("line", { x1: dipX, x2: dipX, y1: Y(84), y2: m.t + ih, stroke: css("--grid"), "stroke-width": 1, "stroke-dasharray": "3 4" }, svg);
-    el("text", { x: dipX + 7, y: Y(68), "font-size": 10.5, fill: css("--muted") }, svg).textContent = "11 月中曾错 7 词";
+    var base = css("--series-en"), up = css("--up"), y0 = Y(0);
     pts.forEach(function (p, i) {
-      var isLast = i === pts.length - 1;
-      el("circle", { cx: X(p.d), cy: Y(p.v), r: isLast ? 6.5 : (p.v === 100 ? 5 : 4), fill: p.v === 100 ? "var(--up)" : "var(--series-en)", stroke: css("--surface"), "stroke-width": isLast ? 2.5 : 2 }, svg);
-      if (isLast) el("circle", { cx: X(p.d), cy: Y(p.v), r: 11, fill: "none", stroke: "var(--up)", "stroke-width": 1.5, opacity: 0.45 }, svg);
-      var hit = el("circle", { cx: X(p.d), cy: Y(p.v), r: 12, fill: "transparent" }, svg);
+      var x = CX(i) - bw / 2, y = Y(p.v), h = y0 - y, r = Math.min(4, h / 2), on = HL.indexOf(i) >= 0;
+      el("path", { d: "M" + x + " " + y0 + " L" + x + " " + (y + r) + " Q" + x + " " + y + " " + (x + r) + " " + y +
+        " L" + (x + bw - r) + " " + y + " Q" + (x + bw) + " " + y + " " + (x + bw) + " " + (y + r) + " L" + (x + bw) + " " + y0 + " Z",
+        fill: on ? up : alpha(base, 0.72) }, svg);
+      el("text", { x: CX(i), y: y - 8, "text-anchor": "middle", "font-size": 11, "font-weight": on ? 700 : 500,
+        fill: on ? up : css("--ink"), "class": "num" }, svg).textContent = p.t;
+      el("text", { x: CX(i), y: y0 + 17, "text-anchor": "middle", "font-size": 10.5, fill: css("--muted"), "class": "num" }, svg).textContent = p.x;
+      if (p.n) el("text", { x: CX(i), y: y0 + 31, "text-anchor": "middle", "font-size": 9.5, fill: css("--muted") }, svg).textContent = p.n;
+      var hit = el("rect", { x: CX(i) - slot / 2, y: m.t, width: slot, height: ih, fill: "transparent" }, svg);
       hit.addEventListener("mousemove", function (ev) {
-        var dd = p.d.replace("2025-", "2025.").replace("2026-", "2026.").replace("-", ".");
-        showTip("<b>" + dd + "</b><br>" + p.t + "（" + p.v + "%）", ev.clientX, ev.clientY);
+        showTip("<b>" + p.f + "</b><br>" + p.t + "（" + Math.round(p.v) + "%）" + (p.s ? "<br>" + p.s : ""), ev.clientX, ev.clientY);
       });
       hit.addEventListener("mouseleave", hideTip);
     });
-    el("text", { x: X("2026-06-01") - 6, y: Y(100) - 12, "text-anchor": "end", "font-size": 11.5, fill: "var(--up)", "font-weight": 600 }, svg).textContent = "2026 年起连续满分";
   })();
 
   /* ---------- Chart: monthly email volume ---------- */
